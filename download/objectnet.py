@@ -5,7 +5,11 @@ import subprocess
 
 from argparse import ArgumentParser
 
-DIR = os.path.dirname(os.path.abspath(__file__))
+ROOT_ELEVATION = 2
+DIR = os.path.abspath(__file__)
+for i in range(ROOT_ELEVATION):
+    DIR = os.path.dirname(DIR)
+
 FTP_URL = "ftp://cs.stanford.edu/cs/cvgl/ObjectNet3D"
 OBJECT_NET = "ObjectNet3D"
 OBJECT_NET_PATH = f"{DIR}/{OBJECT_NET}"
