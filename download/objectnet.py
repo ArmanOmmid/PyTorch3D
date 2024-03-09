@@ -2,8 +2,7 @@ import os
 import sys
 import shutil
 import subprocess
-
-from argparse import ArgumentParser
+import argparse
 
 ROOT_ELEVATION = 2
 DIR = os.path.abspath(__file__)
@@ -39,6 +38,6 @@ def main(args):
         subprocess.run(["rm", "-r", f"{OBJECT_NET_PATH}/{content_type}_temp"])
 
 if __name__ == "__main__":
-    parser = ArgumentParser()
+    parser = argparse.ArgumentParser()
     args = parser.parse_args()
     main(args)
