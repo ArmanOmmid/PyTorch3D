@@ -39,7 +39,7 @@ def main(args):
         subprocess.run(["unzip", "-q", "-d", f"{MODEL_NET_PATH}/ModelNet{args.version}_temp", f"{MODEL_NET_PATH}/ModelNet{args.version}.zip"])
         subprocess.run(["rm", f"{MODEL_NET_PATH}/ModelNet{args.version}.zip"])
         subprocess.run(" ".join(
-            ["mv", f"{MODEL_NET_PATH}/ModelNet10_temp/ModelNet{args.version}/*", f"{MODEL_NET_PATH}/"]
+            ["mv", f"{MODEL_NET_PATH}/ModelNet{args.version}_temp/ModelNet{args.version}/*", f"{MODEL_NET_PATH}/"]
             ), shell=True)
         subprocess.run(["rm", "-r", f"{MODEL_NET_PATH}/ModelNet{args.version}_temp"])
 
