@@ -30,7 +30,9 @@ def main(args):
     else:
         raise ValueError()
 
-    if not os.path.exists(MODEL_NET_PATH):
+    if os.path.exists(MODEL_NET_PATH):
+        print(f"ModelNet{args.version} Already Downloaded")
+    else:
         os.mkdir(MODEL_NET_PATH)
         
         subprocess.run(["wget", "-O", f"{MODEL_NET_PATH}/ModelNet{args.version}.zip", f"{MODEL_NET_URL}"])
@@ -40,8 +42,6 @@ def main(args):
             ["mv", f"{MODEL_NET_PATH}/ModelNet10_temp/ModelNet{args.version}/*", f"{MODEL_NET_PATH}/"]
             ), shell=True)
         subprocess.run(["rm", "-r", f"{MODEL_NET_PATH}/ModelNet{args.version}_temp"])
-    else:
-        print(f"ModelNet{args.version} Already Downloaded")
 
 if __name__ == "__main__":
 
