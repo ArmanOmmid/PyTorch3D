@@ -9,6 +9,8 @@ DIR = os.path.abspath(__file__)
 for i in range(ROOT_ELEVATION):
     DIR = os.path.dirname(DIR)
 
+parser = argparse.ArgumentParser()
+
 FTP_URL = "ftp://cs.stanford.edu/cs/cvgl/ObjectNet3D"
 OBJECT_NET = "ObjectNet3D"
 OBJECT_NET_PATH = f"{DIR}/{OBJECT_NET}"
@@ -38,6 +40,5 @@ def main(args):
         subprocess.run(["rm", "-r", f"{OBJECT_NET_PATH}/{content_type}_temp"])
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
     args = parser.parse_args()
     main(args)
