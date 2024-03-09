@@ -30,16 +30,18 @@ def main(args):
     else:
         raise ValueError()
 
-    if not os.path.exists(MODEL_NET_10_PATH):
-        os.mkdir(MODEL_NET_10_PATH)
+    if not os.path.exists(MODEL_NET_PATH):
+        os.mkdir(MODEL_NET_PATH)
         
-    subprocess.run(["wget", "-O", f"{MODEL_NET_PATH}/ModelNet{MODEL_NET_VERSION}.zip", f"{MODEL_NET_URL}"])
-    subprocess.run(["unzip", "-q", "-d", f"{MODEL_NET_PATH}/ModelNet{MODEL_NET_VERSION}_temp", f"{MODEL_NET_PATH}/ModelNet{MODEL_NET_VERSION}.zip"])
-    subprocess.run(["rm", f"{MODEL_NET_PATH}/ModelNet{MODEL_NET_VERSION}.zip"])
-    subprocess.run(" ".join(
-        ["mv", f"{MODEL_NET_PATH}/ModelNet10_temp/ModelNet{MODEL_NET_VERSION}/*", f"{MODEL_NET_PATH}/"]
-        ), shell=True)
-    subprocess.run(["rm", "-r", f"{MODEL_NET_PATH}/ModelNet{MODEL_NET_VERSION}_temp"])
+        subprocess.run(["wget", "-O", f"{MODEL_NET_PATH}/ModelNet{MODEL_NET_VERSION}.zip", f"{MODEL_NET_URL}"])
+        subprocess.run(["unzip", "-q", "-d", f"{MODEL_NET_PATH}/ModelNet{MODEL_NET_VERSION}_temp", f"{MODEL_NET_PATH}/ModelNet{MODEL_NET_VERSION}.zip"])
+        subprocess.run(["rm", f"{MODEL_NET_PATH}/ModelNet{MODEL_NET_VERSION}.zip"])
+        subprocess.run(" ".join(
+            ["mv", f"{MODEL_NET_PATH}/ModelNet10_temp/ModelNet{MODEL_NET_VERSION}/*", f"{MODEL_NET_PATH}/"]
+            ), shell=True)
+        subprocess.run(["rm", "-r", f"{MODEL_NET_PATH}/ModelNet{MODEL_NET_VERSION}_temp"])
+    else:
+        print(f"ModelNet{MODEL_NET_VERSION} Already Downloaded")
 
 if __name__ == "__main__":
     parser = ArgumentParser()
