@@ -1,5 +1,7 @@
 import os
 import numpy as np
+
+import open3d as o3d
 from torch.utils.data import Dataset
 
 
@@ -36,12 +38,16 @@ class ModelNet(Dataset):
                 self.inputs.append(filepath)
                 self.targets.append(class_index)
 
-        def __len__(self):
-            return len(self.inputs)
-        
-        def __getitem__(self, index):
+    def __len__(self):
+        return len(self.inputs)
+    
+    def __getitem__(self, index):
             
-            pass
+            mesh = o3d.io.read_triangle_mesh(self.inputs[index])
+            targets = self.targets[index]
+
+            return mesh, targets
+            
 
 
             
