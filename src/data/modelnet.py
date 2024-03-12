@@ -35,7 +35,7 @@ class ModelNet(Dataset):
             for filename in os.listdir(class_split_dir):
                 
                 # skip non-entries
-                if filename.split(".")[-1] != ".off":
+                if filename.split(".")[-1] != "off":
                     continue
 
                 filepath = f"{class_split_dir}/{filename}"
