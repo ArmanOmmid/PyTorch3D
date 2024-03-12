@@ -49,7 +49,7 @@ class ModelNet(Dataset):
 
             # mesh = mesh.simplify_vertex_clustering(voxel_size=0.01, contraction=o3d.geometry.SimplificationContraction.Average)
             input = input.sample_points_uniformly(number_of_points=self.samples)
-            input = np.asarray(input.points)
+            input = np.asarray(input.points, dtype=np.float32)
 
             if self.transform is not None:
                 input = self.transform(input)
