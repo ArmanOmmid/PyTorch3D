@@ -6,7 +6,7 @@ from torch.utils.data import Dataset
 
 class ModelNet(Dataset):
 
-    def __init__(self, path, train=True, samples=5_000) -> None:
+    def __init__(self, path, samples, train=True) -> None:
         super().__init__()
 
         self.path = path
