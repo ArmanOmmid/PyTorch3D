@@ -4,7 +4,6 @@ import numpy as np
 import open3d as o3d
 from torch.utils.data import Dataset
 
-
 class ModelNet(Dataset):
 
     def __init__(self, path, train=True) -> None:
