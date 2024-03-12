@@ -16,6 +16,7 @@ class ModelNet(Dataset):
         self.inputs = []
         self.targets = []
         self.classes = []
+        self.transform = None
 
         # Iterate through every item in the data directory
         for dirname in os.listdir(path):
@@ -43,14 +44,17 @@ class ModelNet(Dataset):
     
     def __getitem__(self, index):
             
-            mesh = o3d.io.read_triangle_mesh(self.inputs[index])
-            targets = self.targets[index]
+            input = o3d.io.read_triangle_mesh(self.inputs[index])
+            target = self.targets[index]
 
             # mesh = mesh.simplify_vertex_clustering(voxel_size=0.01, contraction=o3d.geometry.SimplificationContraction.Average)
-            pcd = mesh.sample_points_uniformly(number_of_points=self.samples)
-            # pcd = mesh.sample_points_poisson_disk(number_of_points=self.samples, init_factor=5)
+            input = input.sample_points_uniformly(number_of_points=self.samples)
+            input = np.asarray(input.points)
 
-            return np.asarray(pcd.points), targets
+            if self.transform is not None:
+                input = self.transform(input)
+
+            return input, target
     
     def raw(self, index):
          return self.inputs[index], self.targets[index]
