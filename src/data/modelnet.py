@@ -33,6 +33,10 @@ class ModelNet(Dataset):
             # Iterate through every file in the corresponding split
             class_split_dir = f"{class_dir}/{self.split}"
             for filename in os.listdir(class_split_dir):
+                
+                # skip non-entries
+                if filename.split(".")[-1] != ".off":
+                    continue
 
                 filepath = f"{class_split_dir}/{filename}"
 
