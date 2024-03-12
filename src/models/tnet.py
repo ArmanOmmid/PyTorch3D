@@ -24,7 +24,6 @@ class TNet(nn.Module):
         self.maxpool = LambdaModule(lambda x: torch.max(x, 2, keepdim=True)[0])
 
         self.fc = []
-        print(dim_list)
         for i in range(len(dim_list) - 2):
             self.fc.append(nn.Linear(dim_list[-i-1], dim_list[-i-2]))
             self.fc.append(nn.BatchNorm1d(dim_list[-i-2]))
