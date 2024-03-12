@@ -42,6 +42,6 @@ class TNet(nn.Module):
 
         x = self.fc(x)
         x = self.pose(x)
-        x += self.identity_vector # rotation is a perturbation from identity
+        x += self.identity_vector # rotation is some perturbation from identity
         x = x.view(-1, self.k, self.k)
         return x
