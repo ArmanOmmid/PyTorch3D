@@ -57,7 +57,10 @@ class ModelNet(Dataset):
             return input, target
     
     def raw(self, index):
-         return self.inputs[index], self.targets[index]
+        return self.inputs[index], self.targets[index]
+    
+    def set_transform(self, transform):
+        self.transform = transform
             
 
 
