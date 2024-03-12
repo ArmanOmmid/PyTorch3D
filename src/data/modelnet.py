@@ -6,11 +6,12 @@ from torch.utils.data import Dataset
 
 class ModelNet(Dataset):
 
-    def __init__(self, path, train=True) -> None:
+    def __init__(self, path, train=True, samples=5_000) -> None:
         super().__init__()
 
         self.path = path
         self.split = "train" if train else "test"
+        self.samples = samples
 
         self.inputs = []
         self.targets = []
@@ -45,7 +46,14 @@ class ModelNet(Dataset):
             mesh = o3d.io.read_triangle_mesh(self.inputs[index])
             targets = self.targets[index]
 
-            return mesh, targets
+            # mesh = mesh.simplify_vertex_clustering(voxel_size=0.01, contraction=o3d.geometry.SimplificationContraction.Average)
+            pcd = mesh.sample_points_uniformly(number_of_points=self.samples)
+            # pcd = mesh.sample_points_poisson_disk(number_of_points=self.samples, init_factor=5)
+
+            return np.asarray(pcd.points), targets
+    
+    def raw(self, index):
+         return self.inputs[index], self.targets[index]
             
 
 
